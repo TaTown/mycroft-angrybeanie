@@ -29,12 +29,13 @@ class AngryBeanieSkill(MycroftSkill):
 
     def handle_get_episodes_intent(self, message):
         show = message.data.get("ShowName")
-        episodes = getEpisodes("For Science")
+        #episodes = "Hello world"
+        episodes = getEpisodes(show.encode('utf-8'))
+        self.speak(show.encode('utf-8'))
         self.speak_dialog("episodes", {'show': show.encode('utf-8'), 'episodes': episodes.encode('utf-8')})
 
 def getEpisodes(show):
-    feeds = {'For Science': 'http://feeds.feedburner.com/angrybeanie/ForScienceMP3?format=xml', 
-            'Women In STEMM': 'http://feeds.feedburner.com/WomenInStemm?format=xml'}
+    feeds = {'for science': 'http://feeds.feedburner.com/angrybeanie/ForScienceMP3?format=xml', 'women in stemm': 'http://feeds.feedburner.com/WomenInStemm?format=xml'}
 
     feed = feedparser.parse(feeds[show])
     titles = ""
