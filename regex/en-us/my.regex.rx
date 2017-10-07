@@ -1,1 +1,1 @@
-in (?P<ShowName>.*)
+(in|from) (?P<ShowName>.*)
