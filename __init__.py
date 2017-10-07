@@ -6,6 +6,7 @@ from mycroft.util.log import getLogger
 
 import urllib, json
 import unicodedata
+import feedparser
 from bs4 import BeautifulSoup
 
 __author__ = 'James Purser'
@@ -20,8 +21,27 @@ class AngryBeanieSkill(MycroftSkill):
         get_podcasts_intent = IntentBuilder("GetPodcastsIntent").require("GetPodcastsKeyword").build()
         self.register_intent(get_podcasts_intent, self.handle_get_podcasts_intent)
 
+        get_episodes_intent = IntentBuilder("GetEpisodesIntent").require("GetEpisodesKeyword").require("ShowName").build()
+        self.register_intent(get_episodes_intent, self.handle_get_episodes_intent)
+
     def handle_get_podcasts_intent(self, message):
         self.speak_dialog("podcasts")
+
+    def handle_get_episodes_intent(self, message):
+        show = message.data.get("ShowName")
+        episodes = getEpisodes("For Science")
+        self.speak_dialog("episodes", {'show': show.encode('utf-8'), 'episodes': episodes.encode('utf-8')})
+
+def getEpisodes(show):
+    feeds = {'For Science': 'http://feeds.feedburner.com/angrybeanie/ForScienceMP3?format=xml', 
+            'Women In STEMM': 'http://feeds.feedburner.com/WomenInStemm?format=xml'}
+
+    feed = feedparser.parse(feeds[show])
+    titles = ""
+    for entry in feed.entries:
+        titles += entry.title+", "
+
+    return titles
 
 def create_skill():
     return AngryBeanieSkill()
