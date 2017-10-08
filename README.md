@@ -1,11 +1,8 @@
-# mycroft-angrybeanie
-A skill for the open source assistant Mycroft
+## Angry Beanie
+Angry Beanie Podcast management
 
-# Requirements
-Python:
-	Feedparser
-	
-# Installing
+## Description 
+### Installing
 
 Go to your skills directory (ie /opt/mycroft/skills)
 
@@ -15,16 +12,11 @@ cd into mycroft-angrybeanie
 
 pip -r requirements.txt
 
-# How To Use
 
-## To get list of shows
+## Examples 
+* "Get Angry Beanie shows or Get Angry Beanie podcasts - Returns list of podcasts available"
+* "Angry beanie list episodes for [SHOW_NAME] - list last 10 episodes of the show"
+* "play the latest episode for [SHOW_NAME] - play the latest episode for the show"
 
-Get Angry Beanie shows or Get Angry Beanie podcasts
-
-## To get last ten episodes for each show
-
-Angry beanie list episodes for [SHOW_NAME]
-
-## To play latest episode
-
-play the latest episode for [SHOW_NAME]
+## Credits 
+James Purser
